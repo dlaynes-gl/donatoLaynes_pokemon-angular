@@ -3,6 +3,7 @@
   "version": 2,
   "projects": {
     "pokemon": "apps/pokemon",
-    "pokemon-e2e": "apps/pokemon-e2e"
+    "pokemon-e2e": "apps/pokemon-e2e",
+    "ui": "libs/ui"
   }
 }

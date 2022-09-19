@@ -1,7 +1,7 @@
 {
   "projectType": "application",
   "sourceRoot": "apps/pokemon/src",
-  "prefix": "donato-laynes-pokemon-angular",
+  "prefix": "pokemon-angular",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

@@ -13,7 +13,7 @@ import {
 describe('pokemon', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should list the list of pokemon', () => {
+  it('should list 4 pokemon by default', () => {
     getPokemonList().should((t) => expect(t.length).equal(4));
   });
 
