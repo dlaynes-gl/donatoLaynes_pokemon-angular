@@ -1,13 +1,44 @@
-import { getGreeting } from '../support/app.po';
+import {
+  getPokemonList,
+  getPreviousButton,
+  getNextButton,
+  getSearchInput,
+  getPokemonDetailName,
+  getPokemonDetailSprites,
+  getPokemonDetailMoves,
+  getPokemonDetailType,
+  getPokemonDetailWeight,
+} from '../support/app.po';
 
 describe('pokemon', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  it('should list the list of pokemon', () => {
+    getPokemonList().should((t) => expect(t.length).equal(4));
+  });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome pokemon');
+  it('should navigate to the next page', () => {
+    getNextButton().click();
+    getPokemonList().should((t) => expect(t.length).equal(3));
+  });
+
+  it('should navigate to the previous page', () => {
+    getNextButton().click();
+    getPreviousButton().click();
+    getPokemonList().should((t) => expect(t.length).equal(4));
+  });
+
+  it('should filter the pokemon list', () => {
+    getSearchInput().type('char');
+    getPokemonList().should((t) => expect(t.length).equal(3));
+  });
+
+  it('should show the detail of a pokemon when clicked in the pokemon list', () => {
+    getPokemonList().first().click();
+    getPokemonDetailName().should('have.data');
+    getPokemonDetailType().should('have.data');
+    getPokemonDetailWeight().should('have.data');
+    getPokemonDetailSprites().should((t) => expect(t.length).least(1));
+    getPokemonDetailMoves().should('have.data');
   });
 });
